@@ -1,0 +1,228 @@
+/* Fallback page: the still book on paper. Also what a screen reader hears when the 3D scene is on. */
+
+:root { color-scheme: light; }
+
+html { background: #fbf6ea; }
+
+body {
+  margin: 0;
+  background: #fbf6ea url(assets/paper.webp) repeat;
+  background-size: 512px auto;
+  font-family: system-ui, -apple-system, sans-serif;
+  color: #333;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.book {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.scene {
+  background: #fffdf8;
+  box-shadow: 0 2px 14px rgba(90, 70, 40, 0.18);
+  padding: 20px 16px 8px;
+  margin: 0 0 28px;
+}
+
+.scene h2 {
+  margin: 0 0 14px;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: #8a8276;
+}
+
+/* her writing sits full width above the drawings */
+.scene img[data-id="text"],
+.scene img[data-id="title"] {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 0 18px;
+}
+
+/* the printed words, under her writing on the still page */
+.scene .words {
+  margin: 0 0 18px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* the credit under the dedication on the back page */
+.scene .credit {
+  margin: 14px 0 0;
+  font-size: 14px;
+  color: #6b6358;
+  white-space: pre-line;
+}
+
+/* every other piece keeps its own size and shares a baseline, like cut-outs on a shelf */
+.scene img:not([data-id="text"]):not([data-id="title"]):not([data-id="staples"]) {
+  display: inline-block;
+  max-width: 100%;
+  max-height: 46vh;
+  width: auto;
+  height: auto;
+  vertical-align: bottom;
+  margin: 0 18px 14px 0;
+}
+
+/* progress staples, only meaningful with the 3D scene */
+.staples {
+  display: none;
+  position: fixed;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  z-index: 2;
+}
+.staples li {
+  width: 3px;
+  height: 20px;
+  margin: 9px 0;
+  border-radius: 2px;
+  background: rgba(60, 50, 40, 0.22);
+}
+.staples li.done { background: #333; }
+
+.spacer { height: 0; }
+
+/* the staples belong to the 3D book; on the still page they were a tall picture in every card */
+.scene img[data-id="staples"] { display: none; }
+
+/* without 3D, or while its context is lost, the canvas and the scroll spacer step aside */
+html:not(.gl) canvas,
+html:not(.gl) .spacer { display: none; }
+
+/* when main.js has built the 3D scene */
+html.gl .book {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+html.gl canvas {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+html.gl .staples { display: block; }
+
+/* scroll hint, 3D only, fades once the visitor has scrolled */
+.hint { display: none; }
+html.gl .hint {
+  display: block;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.85);
+  color: #5a5248;
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  white-space: nowrap; /* left: 50% leaves it half the screen, so on a phone it wrapped */
+  transition: opacity 0.6s;
+  pointer-events: none;
+  z-index: 2; /* the canvas comes later in the document and covered it */
+}
+html.gl .hint.gone { opacity: 0; }
+
+/* an upright screen hides the desk (main.js shows it when w > h), so a card on the empty wall asks
+   for a turn. It fades with the hint: the desk sits left of page 1, so after that there is nothing
+   to turn for */
+.turn { display: none; }
+@media (orientation: portrait) {
+  html.gl .turn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: fixed;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    width: max-content;
+    max-width: calc(100vw - 48px); /* clear of the staples at the left edge */
+    box-sizing: border-box;
+    margin: 0;
+    padding: 14px 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 14px rgba(90, 70, 40, 0.18);
+    background: rgba(255, 253, 248, 0.85);
+    color: #5a5248;
+    font-size: 17px;
+    line-height: 1.4;
+    text-align: center;
+    text-wrap: balance;
+    transition: opacity 0.6s;
+    pointer-events: none;
+    z-index: 2;
+  }
+}
+html.gl .hint.gone ~ .turn { opacity: 0; }
+.turn svg { width: 48px; height: 48px; animation: turn 3s ease-in-out infinite; }
+@keyframes turn {
+  0%, 20% { transform: rotate(0); }
+  45%, 80% { transform: rotate(-90deg); }
+  100% { transform: rotate(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .turn svg { animation: none; }
+}
+
+/* the printed words of the page in view, 3D only, once the hint has gone. The words are aria-hidden:
+   a screen reader hears the child's own spelling from the alt text, once */
+.caption { display: none; }
+html.gl .caption {
+  display: block;
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%);
+  width: max-content; /* left: 50% alone would leave it half the screen to wrap in */
+  max-width: min(36em, calc(100vw - 32px));
+  box-sizing: border-box;
+  margin: 0;
+  padding: 8px 14px;
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.85);
+  color: #5a5248;
+  font-size: 17px;
+  line-height: 1.4;
+  text-align: center;
+  white-space: pre-line; /* the back page's credit sits on its own line */
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.6s;
+}
+html.gl .hint.gone ~ .caption { opacity: 1; }

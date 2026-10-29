@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Paper Book</title>
+  <meta name="robots" content="noindex, noimageindex">
+  <link rel="stylesheet" href="style.css">
+  <script type="importmap">{ "imports": { "three": "./vendor/three.module.js" } }</script>
+</head>
+<body>
+  <main class="book">
+    <h1 class="visually-hidden">The Paper Book, a sample</h1>
+
+    <section class="scene" data-scene="1" data-width="6">
+      <h2>Page 1</h2>
+      <img src="assets/01-title.webp" alt="The Paper Book" data-id="title" data-x="3.0" data-z="-0.5" data-h="0.5" data-top="3.6">
+      <p class="words" aria-hidden="true">The Paper Book.</p>
+      <img src="assets/01-staples.webp" alt="Five staples down the edge of the page" data-id="staples" data-x="0.35" data-z="-0.6" data-h="2.9" data-anim="none">
+      <img src="assets/01-sun.webp" alt="A sun with short rays" data-id="sun" data-x="1.7" data-z="0.35" data-h="1.4">
+      <img src="assets/01-house.webp" alt="A house with two windows and a door" data-id="house" data-x="4.2" data-z="-0.15" data-h="2.4" data-anim="none">
+    </section>
+
+    <section class="scene" data-scene="2" data-width="6">
+      <h2>Page 2</h2>
+      <img src="assets/02-text.webp" alt="Draw it on paper. It stands up." data-id="text" data-x="3.0" data-z="-0.5" data-h="0.95" data-top="3.8">
+      <p class="words" aria-hidden="true">Draw it on paper. It stands up.</p>
+      <img src="assets/01-staples.webp" alt="Staples down the edge of the page" data-id="staples" data-x="0.35" data-z="-0.6" data-h="2.9" data-anim="none">
+      <img src="assets/02-tree.webp" alt="A tree" data-id="tree" data-x="2.0" data-z="0.3" data-h="2.3">
+      <img src="assets/02-bubble.webp" alt="An empty speech bubble" data-id="bubble" data-x="4.3" data-z="0.1" data-h="1.0" data-top="3.0" data-anim="none">
+    </section>
+
+    <section class="scene" data-scene="3" data-width="6">
+      <h2>Page 3</h2>
+      <img src="assets/03-text.webp" alt="The end." data-id="text" data-x="3.0" data-z="-0.5" data-h="0.55" data-top="3.8">
+      <p class="words" aria-hidden="true">The end.</p>
+      <img src="assets/01-staples.webp" alt="Staples down the edge of the page" data-id="staples" data-x="0.35" data-z="-0.6" data-h="2.9" data-anim="none">
+      <img src="assets/03-smileys.webp" alt="Three smiling faces" data-id="smileys" data-x="2.4" data-z="0.2" data-h="0.9" data-anim="none">
+      <img src="assets/03-heart.webp" alt="A red heart sticker with a blue edge" data-id="heart" data-x="5.0" data-z="0.1" data-h="1.5">
+      <p class="credit">A sample book, drawn by tools/sample.sh. Make your own with the tools in this repository.</p>
+    </section>
+  </main>
+
+  <div class="additions" hidden>
+    <img src="assets/desk-scissors.webp" alt="" loading="lazy" data-id="scissors" data-pose="stand" data-x="-2.78" data-z="-2.0" data-h="1.45">
+    <img src="assets/desk-tape.webp" alt="" loading="lazy" data-id="tape" data-pose="stand" data-x="-1.95" data-z="-1.6" data-h="0.82">
+    <img src="assets/desk-ruler.webp" alt="" loading="lazy" data-id="ruler" data-pose="stand" data-x="-3.97" data-z="-2.4" data-h="1.8">
+    <img src="assets/desk-glue.webp" alt="" loading="lazy" data-id="glue" data-pose="stand" data-x="-3.4" data-z="-2.2" data-h="1.17">
+    <img src="assets/desk-pencil.webp" alt="" loading="lazy" data-id="pencil" data-pose="stand" data-x="-4.5" data-z="-2.6" data-h="2.1">
+  </div>
+
+  <ol class="staples" aria-hidden="true">
+    <li></li><li></li><li></li>
+  </ol>
+  <div class="spacer" aria-hidden="true"></div>
+  <p class="hint" aria-hidden="true">scroll to walk through the book</p>
+  <p class="turn" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><rect x="7" y="2.5" width="10" height="19" rx="2" fill="#fffdf8"/><path d="M10.5 18.5h3"/></svg>
+    Turn sideways to see the desk
+  </p>
+  <p class="caption" aria-hidden="true"></p>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html>
