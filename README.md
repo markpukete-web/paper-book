@@ -22,7 +22,8 @@ reader who prefers less motion, opens with `?nogl=1`.
 
 ## Make your own book
 
-The tools need ImageMagick 7. `sample.sh` and `dedication.sh` use a font that ships with macOS.
+The tools need ImageMagick 7. `grid.sh` labels its grid in Arial on macOS and in fontconfig's sans
+font elsewhere. `sample.sh` and `dedication.sh` use a font that ships with macOS.
 
 1. Photograph each page flat, in even light. Keep the photos in `archive/`, which git ignores.
 2. `./tools/grid.sh archive/page.jpg grid.jpg` draws coordinates over a photo, to find each crop.
