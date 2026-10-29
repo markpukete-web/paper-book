@@ -11,6 +11,7 @@ three-page sample book. A real book lives in its own private repository.
 - `site/` must open from a folder with nothing more than a static file server.
 - No real child's drawings, words, photos or names in this repository. The sample book is drawn by
   `tools/sample.sh`. Original photos carry GPS: they belong in `archive/`, which git ignores.
+- The README links to the live book at its Vercel address only. No link text names the child.
 - A child's spelling stays as written, in pictures and in alt text. The printed caption for each
   page is in corrected English. It sits beside the writing and never replaces it.
 - The page carries `<meta name="robots" content="noindex, noimageindex">`, and `site/vercel.json` sends
@@ -31,5 +32,3 @@ node --test tools/                             # tests for the pure functions
 
 - Conventional commit prefixes. No attribution lines.
 - Code and assets go through a pull request with a Codex review, per Mark's global rules.
-- GitHub Pages serves `site/` from `main` through `.github/workflows/pages.yml`. The job is skipped
-  while the repository is private, because Pages on a private repository needs a paid plan.
