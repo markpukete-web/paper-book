@@ -3,6 +3,9 @@
 A child's drawn and stapled story book, turned into a paper world you walk through by scrolling.
 Each drawing stands up as a pencil cut-out on its own paper and casts a real shadow. This
 repository holds the code and the tools with a three-page sample book. The real book is not here.
+You can see it live at <https://daughter-doodle.vercel.app>.
+
+![The sample book: cartoon tools on a desk, then the cover's sun and house standing on the paper](sample/screenshot.webp)
 
 ## Folders
 
