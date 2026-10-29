@@ -4,12 +4,17 @@ A child's drawn and stapled story book, turned into a paper world you walk throu
 Each drawing stands up as a pencil cut-out on its own paper and casts a real shadow. This
 repository holds the code and the tools with a three-page sample book. The real book is not here.
 
+Try the sample book: <https://markpukete-web.github.io/paper-book/>
+
+![The sample book: cartoon tools on a desk, then the cover's sun and house standing on the paper](sample/screenshot.webp)
+
 ## Folders
 
 - `site/` is the web page. It is plain HTML, CSS and JavaScript with one copy of three.js inside
   it. No build step. Serve the folder with any static file server and open it.
 - `tools/` turns a photographed page into pencil cut-outs and checks that it worked.
 - `sample/page.jpg` is the sample page. `./tools/sample.sh` draws it and cuts `site/assets/` from it.
+- `.github/workflows/pages.yml` publishes `site/` on GitHub Pages from `main`.
 
 ## Run it
 

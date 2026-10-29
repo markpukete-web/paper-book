@@ -31,3 +31,5 @@ node --test tools/                             # tests for the pure functions
 
 - Conventional commit prefixes. No attribution lines.
 - Code and assets go through a pull request with a Codex review, per Mark's global rules.
+- GitHub Pages serves `site/` from `main` through `.github/workflows/pages.yml`. The job is skipped
+  while the repository is private, because Pages on a private repository needs a paid plan.
